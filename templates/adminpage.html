@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Dashboard</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 20px;
+      background-color: #f4f4f4;
+      display: flex;
+      justify-content: space-between;
+    }
+
+    h1 {
+      color: #333;
+    }
+
+    .options-container {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      margin-top: 20px;
+    }
+
+    .options-container a {
+      margin-bottom: 10px;
+      text-decoration: none;
+      color: #333;
+      cursor: pointer;
+    }
+
+    .logout-button {
+      top: 10px;
+      height: 10ch;
+      cursor: pointer;
+      background-color: #4CAF50;
+      color: white;
+      padding: 10px;
+      border: none;
+      border-radius: 5px;
+    }
+
+    table {
+      width: 70%;
+      border-collapse: collapse;
+      margin-top: 100px;
+      height: 30%;
+    }
+
+    th, td {
+      border: 1px solid #ddd;
+      padding: 12px;
+      text-align: left;
+    }
+
+    th {
+      background-color: #4CAF50;
+      color: white;
+    }
+
+    tr:nth-child(even) {
+      background-color: #f9f9f9;
+    }
+
+    tr:hover {
+      background-color: #f1f1f1;
+    }
+
+    .filter-button {
+      margin-bottom: 10px;
+      height: 10ch;
+      width: 100px;
+      cursor: pointer;
+      background-color: #007BFF;
+      color: white;
+      padding: 10px;
+      border: none;
+      border-radius: 5px;
+    }
+    .translate-container {
+            position: absolute;
+            bottom: 10px;
+            right: 10px;
+            background: rgba(255, 255, 255, 0.8);
+            padding: 10px;
+            border-radius: 5px;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+        }
+        
+  </style>
+</head>
+<body>
+  <div class="translate-container" id="google_translate_element"></div>
+
+  <!-- <h1>Feedback Form Responses</h1> -->
+
+  <!-- Container with options -->
+  <div class="options-container">
+    <a href="#">Registered Users</a>
+    <a href="#">Feedback Info</a>
+  </div>
+  <button class="filter-button">Filter</button>
+  <button class="logout-button">Logout</button>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Phone</th>
+        <th>Email</th>
+        <th>Feedback</th>
+        <th>Satisfaction</th>
+        <th>Product</th>
+        <th>Service/Product Name</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for user in user_details %}
+      <tr>
+        <td>{{ user[0] }}</td>
+        <td>{{ user[1] }}</td>
+        <td>{{ user[2] }}</td>
+        <td>{{ user[3] }}</td>
+        <td>{{ user[4] }}</td>
+        <td>{{ user[5] }}</td>
+        <td>{{ user[6] }}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+
+  <script>
+    function googleTranslateElementInit() {
+      new google.translate.TranslateElement({ pageLanguage: 'en' }, 'google_translate_element');
+    }
+  </script>
+  <script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+</body>
+</html>

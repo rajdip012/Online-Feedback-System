@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale: 1.0">
+    <title>Admin Dashboard - Online Feedback System</title>
+    <style>
+        body {
+            background-image: url("{{ url_for('static', filename='image.jpg') }}");
+            background-repeat: no-repeat;
+            background-size: cover;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .nav {
+            background-color: rgba(71, 97, 216, 0.4);
+            color: white;
+            padding: 5px;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+        }
+
+        .new-container {
+            background: rgba(255, 255, 255, 0.8);
+            padding: 30px;
+            text-align: center;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+        }
+
+        h1 {
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+
+        .input-container {
+            margin: 20px 30px 10px 0px;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+        }
+
+        input {
+            padding: 10px;
+            width: 100%;
+            max-width: 300px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        input[type="submit"] {
+            background-color: #007BFF;
+            color: white;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+
+        .login{
+            width: 100%;
+        }
+
+        .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 24px;
+            padding-left: 20px;
+        }
+
+        ul {
+            list-style: none;
+            padding: 0px 20px 0px 20px;
+            margin: 0;
+        }
+
+        ul li {
+            display: inline;
+            margin-right: 20px;
+        }
+
+        a {
+            text-decoration: none;
+            color: white;
+            font-weight: bold;
+        }
+
+        a.current {
+            text-decoration: underline;
+        }
+
+        .translate-container {
+            position: absolute;
+            bottom: 10px;
+            right: 10px;
+            background: rgba(255, 255, 255, 0.8);
+            padding: 10px;
+            border-radius: 5px;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+        }
+    </style>
+</head>
+<body>
+    <!-- Google Translate Widget Container -->
+    <div class="translate-container" id="google_translate_element"></div>
+
+    <nav class="nav">
+        <div class="container">
+            <h1 class="logo"><a href="#"><i class="fa-solid fa-moon"></i> Online Feedback System</a></h1>
+            <ul>
+                <li><a href="/">Home</a></li>
+                <li><a href="/admin">Admin</a></li>
+            </ul>
+        </div>
+    </nav>
+    <div class="new-container">
+        <h1>Admin Dashboard</h1>
+        <form method="POST" action="/login">
+        <div class="input-container">
+            <input type="text" name="email" placeholder="Email">
+        </div>
+        <div class="input-container">
+            <input type="password" name="password" placeholder="Password">
+        </div>
+        <div class="input-container">
+            <input class="login" type="submit" value="Login">
+        </div>
+    </form>
+    </div>
+
+    <script>
+        function googleTranslateElementInit() {
+            new google.translate.TranslateElement({ pageLanguage: 'en' }, 'google_translate_element');
+        }
+    </script>
+    <script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+</body>
+</html>

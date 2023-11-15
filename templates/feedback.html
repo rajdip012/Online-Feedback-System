@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Online Feedback System</title>
+    <style>
+        body {
+            background-image: url("{{ url_for('static', filename='image.jpg') }}");
+            background-size: cover;
+            background-attachment: fixed;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .navbar {
+            color: white;
+            padding: 10px;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            align-items: center;
+        }
+
+        .navbar ul {
+            list-style: none;
+            padding: 10px;
+            margin: 0;
+        }
+
+        .navbar ul li {
+            display: inline;
+            margin-right: 20px;
+        }
+
+        .navbar a {
+            text-decoration: none;
+            color: white;
+            font-weight: bold;
+        }
+
+        .container {
+            background: rgba(255, 255, 255, 0.8);
+            padding: 20px;
+            text-align: center;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+            max-width: 700px;
+            margin: 80px auto;
+        }
+
+        h1 {
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+
+        .container {
+            background: rgba(255, 255, 255, 0.8);
+            padding: 20px;
+            text-align: center;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+            max-width: 700px;
+            margin-bottom: 10px;
+        }
+
+        h1 {
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+
+        .input-container {
+            margin: 10px 0;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        select, input[type="text"], textarea {
+            padding: 10px;
+            width: 100%;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        textarea {
+            height: 250px;
+        }
+
+        input[type="submit"] {
+            background-color: #007BFF;
+            color: white;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+
+        .signup {
+            width: 100%;
+        }
+
+        .satisfaction-options {
+            display: flex;
+            flex-direction: column;
+            align-items: left;
+        }
+
+        .satisfaction-label {
+            text-align: left;
+            margin-bottom: 5px;
+        }
+
+        .satisfaction-options div {
+            display: flex;
+            align-items: center;
+        }
+
+        .satisfaction-options input[type="radio"] {
+            margin-right: 5px;
+        }
+
+        .translate-container 
+        {
+            position: absolute;
+            bottom: 10px;
+            right: 10px;
+            background: rgba(255, 255, 255, 0.8);
+            padding: 10px;
+            border-radius: 5px;
+            box-shadow: 0 0 5px rgba(0, 0, 0,0.3);
+        }
+    </style>
+</head>
+<body>
+  
+
+    <div class="translate-container" id="google_translate_element"></div>
+    <div class="navbar">
+        <ul>
+        </ul>
+    </div>
+    <br>
+    <br>
+    <div class="container">
+        <h1>Online Feedback System</h1>
+        <form method="POST" action="/feedback">
+            <div class="input-container">
+                <select name="feedback-type" required>
+                    <option value="" disabled selected>Select Feedback Type</option>
+                    <option value="Services">Services</option>
+                    <option value="Product">Product</option>
+                </select>
+            </div>
+            <div class="input-container">
+                <input type="text" name="service_name" placeholder="Product/Service name" required>
+            </div>
+            <div class="input-container satisfaction-options">
+                <div class="satisfaction-label">
+                    <label for="satisfaction">How satisfied were you with our service or product?</label>
+                </div>
+                <div>
+                    <input type="radio" id="excellent" name="satisfaction" value="Excellent" required>
+                    <label for="excellent">Excellent</label>
+                </div>
+                <div>
+                    <input type="radio" id="good" name="satisfaction" value="Good" required>
+                    <label for="good">Good</label>
+                </div>
+                <div>
+                    <input type="radio" id="neutral" name="satisfaction" value="Neutral" required>
+                    <label for="neutral">Neutral</label>
+                </div>
+                <div>
+                    <input type="radio" id="poor" name="satisfaction" value="Poor" required>
+                    <label for="poor">Poor</label>
+                </div>
+            </div>
+            <div class="input-container">
+                <textarea name="feedback" placeholder="If you have specific feedback, please write to us..." required></textarea>
+            </div>
+            <div class="input-container">
+                <input type="text" name="name" placeholder="Your Name" required>
+            </div>
+            <div class="input-container">
+                <input type="text" name="email" placeholder="Your Mail-ID" required>
+            </div>
+            <div class="input-container">
+                <input type="text" name="phone" placeholder="Your Phone Number" required pattern="[0-9]{10}">
+            </div>
+            <div class="input-container">
+                <input class="signup" type="submit" value="Submit Feedback" name="submit">
+            </div>
+        </form>
+    </div>
+    <script>
+        function googleTranslateElementInit() {
+            new google.translate.TranslateElement({ pageLanguage: 'en' }, 'google_translate_element');
+        }
+    </script>
+    <script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+</body>
+</html>
+    <!-- <div class="translate-container" id="google_translate_element"></div>
+    <div class="navbar">
+        <ul>
+        </ul>
+    </div>
+    <br>
+    <br>
+    <div class="container">
+        <h1>Feedback Page</h1>
+        <form method="POST" action="/feedback">
+            <div class="input-container">
+                <select name="feedback-type" required>
+                    <option value="" disabled selected>Select Feedback Type</option>
+                    <option value="Service">Service</option>
+                    <!--<option value="School">School</option>
+                    <option value="College">College</option>
+                    <option value="Restaurant">Restaurant</option>
+                    <option value="Hospital">Hospital</option>
+                    <option value="Shopping Mall">Shopping Mall</option>
+                    <option value="Cafes">Cafes</option>
+                    <option value="Others">Others</option>-->
+                    <!-- <option value="Product">Product</option>
+                </select>
+            <div class="input-container">
+                <input type="text" name="service_name" placeholder="Product/Service name" required>
+            </div>
+            </div>
+            <div class="input-container satisfaction-options">
+                <div class="satisfaction-label">
+                    <label for="satisfaction">How satisfied were/are you with the service or product?</label>
+                </div>
+                <div>
+                    <input type="radio" id="excellent" name="satisfaction" value="Excellent" required>
+                    <label for="excellent">Excellent</label>
+                </div>
+                <div>
+                    <input type="radio" id="good" name="satisfaction" value="Good" required>
+                    <label for="good">Good</label>
+                </div>
+                <div>
+                    <input type="radio" id="neutral" name="satisfaction" value="Neutral" required>
+                    <label for="neutral">Neutral</label>
+                </div>
+                <div>
+                    <input type="radio" id="poor" name="satisfaction" value="Poor" required>
+                    <label for="poor">Poor</label>
+                </div>
+            </div>
+            <div class="input-container">
+                <textarea name="feedback" placeholder="Please write the feedback in detail.." required></textarea>
+            </div>
+            <div class="input-container">
+                <input type="text" name="name" placeholder="Your Name" required>
+            </div>
+            <div class="input-container">
+                  <input type="text" name="email" placeholder="Your Mail-ID" required pattern="[^@\s]+@[^@\s]+\.[a-zA-Z]{2,}">
+            </div>
+            <div class="input-container">
+                <input type="text" name="phone" placeholder="Your Phone Number" required pattern="[0-9]{10}">
+            </div>
+            <div class="input-container">
+                <input class="signup" type="submit" value="Submit Feedback" name="submit">
+            </div>
+        </form>
+    </div>
+    <script>
+        function googleTranslateElementInit() {
+            new google.translate.TranslateElement({ pageLanguage: 'en' }, 'google_translate_element');
+        }
+    </script>
+    <script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+</body>
+</html> --> -->
